@@ -1,0 +1,15 @@
+
+
+- hosts: all
+  tasks:
+    - name: Gather facts
+      ansible.builtin.setup:
+
+    - name: Write device info to file
+      ansible.builtin.lineinfile:
+        path: /path/to/device_info.txt
+        line: "Hostname: {{ ansible_hostname }}, IP Address: {{ ansible_host }}"
+        create: yes
+        state: present
+      delegate_to: localhost
+      run_once: true
